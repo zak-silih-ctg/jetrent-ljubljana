@@ -108,6 +108,37 @@ export const homeContent = {
   },
 }
 
+export const fleetContent = {
+  hero: {
+    title: 'Naša flota',
+    subtitle: 'Izberite jet ski, ki ustreza vašim željam. Vsak je pripravljen za vaše morske pustolovščine.',
+    badge: 'Flota',
+  },
+  cta: 'Več informacij',
+}
+
+export interface FleetItem {
+  slug: string
+  name: string
+  tagline: string
+  image: string
+  specs: { label: string; value: string }[]
+}
+
+export const fleetItems: FleetItem[] = [
+  {
+    slug: 'spark-1',
+    name: 'Sea-Doo Spark 2UP 90HP',
+    tagline: 'Kompakten, hiter in izjemno zabaven. Idealen za dopust na morju.',
+    image: '/images/1.jpg',
+    specs: [
+      { label: 'Moč', value: '90 KM' },
+      { label: 'Hitrost', value: '~80 km/h' },
+      { label: 'Oseb', value: '2' },
+    ],
+  },
+]
+
 export const jetSkiContent = {
   hero: {
     title: 'Sea-Doo Spark 2UP 90HP',
