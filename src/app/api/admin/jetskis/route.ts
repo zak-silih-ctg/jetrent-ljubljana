@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
   }
 
   const body = await req.json()
-  const { name, slug, description, dailyPriceLow, dailyPriceHigh, dailyPriceShort, imageUrl } = body
+  const { name, slug, description, tagline, dailyPriceLow, dailyPriceHigh, dailyPriceShort, imageUrl, images, pageContent } = body
 
   if (!name || !slug) {
     return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
@@ -53,10 +53,13 @@ export async function POST(req: NextRequest) {
       name,
       slug,
       description: description || '',
+      tagline: tagline || '',
       daily_price_low: dailyPriceLow || 60,
       daily_price_high: dailyPriceHigh || 80,
       daily_price_short: dailyPriceShort || 100,
       image_url: imageUrl || '/images/1.jpg',
+      images: images || ['/images/1.jpg'],
+      page_content: pageContent || {},
     })
     .select()
     .single()
@@ -80,7 +83,7 @@ export async function PUT(req: NextRequest) {
   }
 
   const body = await req.json()
-  const { id, name, slug, description, dailyPriceLow, dailyPriceHigh, dailyPriceShort, imageUrl, isActive } = body
+  const { id, name, slug, description, tagline, dailyPriceLow, dailyPriceHigh, dailyPriceShort, imageUrl, images, pageContent, isActive } = body
 
   if (!id) {
     return NextResponse.json({ error: 'Missing jet ski id' }, { status: 400 })
@@ -92,10 +95,13 @@ export async function PUT(req: NextRequest) {
   if (name !== undefined) updateData.name = name
   if (slug !== undefined) updateData.slug = slug
   if (description !== undefined) updateData.description = description
+  if (tagline !== undefined) updateData.tagline = tagline
   if (dailyPriceLow !== undefined) updateData.daily_price_low = dailyPriceLow
   if (dailyPriceHigh !== undefined) updateData.daily_price_high = dailyPriceHigh
   if (dailyPriceShort !== undefined) updateData.daily_price_short = dailyPriceShort
   if (imageUrl !== undefined) updateData.image_url = imageUrl
+  if (images !== undefined) updateData.images = images
+  if (pageContent !== undefined) updateData.page_content = pageContent
   if (isActive !== undefined) updateData.is_active = isActive
 
   const { data, error } = await supabase

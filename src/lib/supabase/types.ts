@@ -8,6 +8,15 @@ export type BookingStatus =
   | 'expired'
   | 'completed'
 
+export interface JetSkiPageContent {
+  hero?: { badge?: string; title?: string; subtitle?: string }
+  intro?: { title?: string; description?: string }
+  highlights?: { title: string; description: string; icon: string }[]
+  specs?: { title?: string; subtitle?: string; rows?: { label: string; value: string }[] }
+  gallery?: { title?: string; subtitle?: string }
+  cta?: { title?: string; subtitle?: string; ctaText?: string }
+}
+
 // ── Convenience aliases (re-exported from Database) ──────────
 
 export type JetSki = Database['public']['Tables']['jetskis']['Row']
@@ -41,11 +50,14 @@ export type Database = {
           name: string
           slug: string
           description: string
+          tagline: string
           daily_price_low: number
           daily_price_high: number
           daily_price_short: number
           image_url: string
+          images: string[]
           specs: Record<string, string | number>
+          page_content: JetSkiPageContent
           is_active: boolean
           created_at: string
           updated_at: string
@@ -55,11 +67,14 @@ export type Database = {
           name: string
           slug: string
           description: string
+          tagline?: string
           daily_price_low: number
           daily_price_high: number
           daily_price_short: number
           image_url: string
+          images?: string[]
           specs?: Record<string, string | number>
+          page_content?: JetSkiPageContent
           is_active?: boolean
           created_at?: string
           updated_at?: string
@@ -69,11 +84,14 @@ export type Database = {
           name?: string
           slug?: string
           description?: string
+          tagline?: string
           daily_price_low?: number
           daily_price_high?: number
           daily_price_short?: number
           image_url?: string
+          images?: string[]
           specs?: Record<string, string | number>
+          page_content?: JetSkiPageContent
           is_active?: boolean
           created_at?: string
           updated_at?: string

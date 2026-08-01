@@ -7,6 +7,7 @@ export type {
   Database,
   BookingStatus,
   JetSki,
+  JetSkiPageContent,
   Customer,
   Booking,
   Payment,
