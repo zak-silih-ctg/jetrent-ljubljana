@@ -36,7 +36,7 @@ export default function PogodbaPage() {
                     Pogodba ob prevzemu
                   </p>
                   <p className="text-primary-700 text-sm">
-                    Najemna pogodba se je na voljo za prenos ob zaključeni rezervaciji. Pogodbo je potrebno izpolniti, digitalno podpisati in vrniti na e-poštni naslov najemodajalca pred prevzemom jet skija. V primeru, da pogodba ni vrnjena pravočasno, se lahko najem zavrne.
+                    Najemna pogodba je na voljo za prenos ob zaključeni rezervaciji. Pogodbo je potrebno izpolniti, digitalno podpisati in vrniti na e-poštni naslov najemodajalca pred prevzemom jet skija. V primeru, da pogodba ni vrnjena pravočasno, se lahko najem zavrne.
                   </p>
                 </div>
               </div>
