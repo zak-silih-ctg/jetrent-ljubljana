@@ -404,6 +404,11 @@ export const bankDetails = {
   purpose: 'Polog za najem jet skija',
 }
 
+export const flikDetails = {
+  phone: '040 698 807',
+  email: 'zaksilih@gmail.com',
+}
+
 // ── Format helpers ───────────────────────────────────────────
 
 export function formatEUR(amount: number): string {

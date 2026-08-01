@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { bookingContent } from '@/data/booking'
 import { businessInfo } from '@/data/business'
-import { formatEUR, formatDate, bankDetails } from '@/lib/booking'
+import { formatEUR, formatDate, bankDetails, flikDetails } from '@/lib/booking'
 import type { PriceBreakdown } from '@/lib/booking'
 import type { JetSki } from '@/lib/supabase'
 import { useState } from 'react'
@@ -97,6 +97,27 @@ export default function BookingConfirmation({
           <div className="flex justify-between">
             <span className="text-gray-500">SWIFT/BIC</span>
             <span className="font-mono font-medium text-gray-900">{bankDetails.swift}</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="text-gray-500">Referenca</span>
+            <span className="font-mono font-medium text-gray-900">{reference}</span>
+          </div>
+          <div className="flex justify-between border-t border-gray-200 pt-3">
+            <span className="text-gray-700 font-medium">Znesek</span>
+            <span className="font-bold text-primary-600">{formatEUR(price.depositAmount)}</span>
+          </div>
+        </div>
+
+        {/* Flik details */}
+        <div className="bg-gray-50 rounded-2xl border border-gray-100 p-6 space-y-3 text-sm">
+          <h3 className="font-semibold text-gray-900 mb-3">{content.flikTitle}</h3>
+          <div className="flex justify-between">
+            <span className="text-gray-500">{content.flikPhone}</span>
+            <span className="font-mono font-medium text-gray-900">{flikDetails.phone}</span>
+          </div>
+          <div className="flex justify-between">
+            <span className="text-gray-500">{content.flikEmail}</span>
+            <span className="font-medium text-gray-900">{flikDetails.email}</span>
           </div>
           <div className="flex justify-between">
             <span className="text-gray-500">Referenca</span>
