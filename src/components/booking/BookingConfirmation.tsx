@@ -1,10 +1,11 @@
 'use client'
 
 import Link from 'next/link'
-import { CheckCircle2, Copy, Check } from 'lucide-react'
+import { CheckCircle2, Copy, Check, FileDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { bookingContent } from '@/data/booking'
+import { businessInfo } from '@/data/business'
 import { formatEUR, formatDate, bankDetails } from '@/lib/booking'
 import type { PriceBreakdown } from '@/lib/booking'
 import type { JetSki } from '@/lib/supabase'
@@ -105,6 +106,26 @@ export default function BookingConfirmation({
             <span className="text-gray-700 font-medium">Znesek</span>
             <span className="font-bold text-primary-600">{formatEUR(price.depositAmount)}</span>
           </div>
+        </div>
+
+        {/* Contract download */}
+        <div className="bg-primary-50 border border-primary-200 rounded-xl p-4">
+          <h3 className="text-sm font-semibold text-primary-900 mb-2 flex items-center gap-2">
+            <FileDown className="w-4 h-4" />
+            {content.contractTitle}
+          </h3>
+          <p className="text-sm text-primary-700 mb-3">
+            {content.contractText}{' '}
+            <a href={`mailto:${businessInfo.contact.email}`} className="font-medium underline">
+              {businessInfo.contact.email}
+            </a>.
+          </p>
+          <Button asChild variant="outline" size="sm">
+            <a href="/contract/Jet4You_najemna_pogodba.pdf" download>
+              <FileDown className="w-4 h-4 mr-2" />
+              {content.contractDownload}
+            </a>
+          </Button>
         </div>
 
         {/* Reminder */}
