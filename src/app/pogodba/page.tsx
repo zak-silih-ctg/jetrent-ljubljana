@@ -36,8 +36,7 @@ export default function PogodbaPage() {
                     Pogodba ob prevzemu
                   </p>
                   <p className="text-primary-700 text-sm">
-                    Najemna pogodba se izroči in podpiše ob prevzemu jet skija.
-                    Pred podpisom imate možnost pregleda vseh pogojev.
+                    Najemna pogodba se je na voljo za prenos ob zaključeni rezervaciji. Pogodbo je potrebno izpolniti, digitalno podpisati in vrniti na e-poštni naslov najemodajalca pred prevzemom jet skija. V primeru, da pogodba ni vrnjena pravočasno, se lahko najem zavrne.
                   </p>
                 </div>
               </div>
@@ -76,16 +75,6 @@ export default function PogodbaPage() {
                   Postopek v primeru okvare
                 </li>
               </ul>
-
-              <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-                <p className="text-yellow-800 font-medium mb-2">
-                  Opomba za lastnika
-                </p>
-                <p className="text-yellow-700 text-sm">
-                  Tu lahko dodate vzorec najemne pogodbe v PDF obliki ali
-                  podrobnejše informacije o pogodbenih določilih.
-                </p>
-              </div>
             </div>
           </div>
         </div>
