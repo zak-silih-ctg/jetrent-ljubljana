@@ -142,7 +142,7 @@ export default function BookingConfirmation({
             </a>.
           </p>
           <Button asChild variant="outline" size="sm">
-            <a href="/contract/Jet4You_najemna_pogodba.pdf" download>
+            <a href={`/api/contract?ref=${encodeURIComponent(reference)}`} download="Jet4You_najemna_pogodba.pdf">
               <FileDown className="w-4 h-4 mr-2" />
               {content.contractDownload}
             </a>
