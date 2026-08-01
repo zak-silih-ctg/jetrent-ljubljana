@@ -22,6 +22,8 @@ import PhotoGallery from '@/components/PhotoGallery'
 import { cn } from '@/lib/utils'
 import { createServerClient } from '@/lib/supabase/server'
 import type { JetSkiPageContent } from '@/lib/supabase/types'
+import { jetSkiContent } from '@/data/content'
+import { businessInfo } from '@/data/business'
 
 const iconMap: Record<string, LucideIcon> = {
   Feather,
@@ -57,10 +59,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!jetski) return { title: 'Ni najdeno' }
 
   const pc = jetski.page_content as JetSkiPageContent
-  return {
-    title: pc?.hero?.title || jetski.name,
-    description: jetski.description || pc?.hero?.subtitle || '',
-  }
+  const title = pc?.hero?.title || jetski.name
+  const description = pc?.hero?.subtitle || jetski.description || jetSkiContent.hero.subtitle
+  return { title, description }
 }
 
 export default async function JetSkiDetailPage({ params }: Props) {
@@ -69,13 +70,57 @@ export default async function JetSkiDetailPage({ params }: Props) {
   if (!jetski) notFound()
 
   const pc = (jetski.page_content || {}) as JetSkiPageContent
-  const images = jetski.images && jetski.images.length > 0 ? jetski.images : [jetski.image_url]
-  const hero = pc.hero || { badge: '', title: jetski.name, subtitle: '' }
-  const intro = pc.intro || { title: '', description: jetski.description }
-  const highlights = pc.highlights || []
-  const specs = pc.specs || { title: 'Tehnične specifikacije', subtitle: '', rows: [] }
-  const gallery = pc.gallery || { title: 'Galerija', subtitle: '' }
-  const cta = pc.cta || { title: '', subtitle: '', ctaText: 'Rezerviraj termin' }
+  const hasPageContent = pc.hero?.title || pc.intro?.title || (pc.highlights && pc.highlights.length > 0)
+
+  // Fallback to static content if DB page_content is empty (first jet ski)
+  const fallback = jetski.name === 'Sea-Doo Spark 2UP 90HP' && !hasPageContent
+  const product = businessInfo.product
+  const staticContent = jetSkiContent
+
+  const images = hasPageContent
+    ? (jetski.images && jetski.images.length > 1 ? jetski.images : product.images)
+    : (fallback ? product.images : [jetski.image_url])
+
+  const hero = fallback
+    ? staticContent.hero
+    : (pc.hero || { badge: '', title: jetski.name, subtitle: '' })
+
+  const intro = fallback
+    ? staticContent.intro
+    : (pc.intro || { title: '', description: jetski.description })
+
+  const highlights = fallback
+    ? staticContent.highlights
+    : (pc.highlights || [])
+
+  const specs = fallback
+    ? {
+        title: staticContent.specs.title,
+        subtitle: staticContent.specs.subtitle,
+        rows: [
+          { label: 'Model', value: product.model },
+          { label: 'Letnik', value: String(product.year) },
+          { label: 'Motor', value: product.engine },
+          { label: 'Moč', value: `${product.horsepower} KM` },
+          { label: 'Najvišja hitrost', value: `~${product.topSpeed} km/h` },
+          { label: 'Gorivo', value: product.fuelType },
+          { label: 'Prostornina rezervoarja', value: `${product.fuelCapacity} L` },
+          { label: 'Poraba goriva', value: product.fuelConsumption },
+          { label: 'Suha teža', value: `${product.weight} kg` },
+          { label: 'Dolžina', value: `${product.length} cm` },
+          { label: 'Širina', value: `${product.width} cm` },
+          { label: 'Število oseb', value: String(product.capacity) },
+        ],
+      }
+    : (pc.specs || { title: 'Tehnične specifikacije', subtitle: '', rows: [] })
+
+  const gallery = fallback
+    ? staticContent.gallery
+    : (pc.gallery || { title: 'Galerija', subtitle: '' })
+
+  const cta = fallback
+    ? staticContent.cta
+    : (pc.cta || { title: '', subtitle: '', ctaText: 'Rezerviraj termin' })
 
   return (
     <div className="page-padding-top">
