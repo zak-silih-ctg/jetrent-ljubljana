@@ -56,6 +56,12 @@ export const faqItems: FAQItem[] = [
     category: 'usage',
   },
   {
+    id: 'helmet-life-jacket',
+    question: 'Ali je obvezna uporaba čelade in rešilnega jopiča?',
+    answer: 'Da, obvezna je uporaba čelade in rešilnega jopiča med uporabo jet skija. Ob prevzemu vodnega skuterja boste prejeli dva rešilna jopiča, medtem ko si morate čelade priskrbeti sami. Za morebitne kazni prejete zaradi neupoštevanja teh pravil je odgovorna stranka.',
+    category: 'usage',
+  },
+  {
     id: 'deposit',
     question: 'Kako je s kavcijo?',
     answer: 'Ob prevzemu jet skija je obvezna kavcija v višini 500 €, ki se plača v gotovini ali po dogovoru. Kavcija se vrne v celoti ob vračilu, če je jet ski nepoškodovan in vrnjen pravočasno. Morebitne poškodbe ali manjkajoče gorivo se odštejejo od kavcije.',

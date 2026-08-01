@@ -260,6 +260,11 @@ export const howItWorksContent = {
         required: true,
       },
       {
+        title: 'Obvezna uporaba čelade in rešilnega jopiča',
+        description: 'Stranka mora obvezno uporabljati čelado in rešilni jopič med uporabo jet skija. Ob prevzemu vodnega skuterja boste prejeli dva rešilna jopiča, medtem ko si morate čelade priskrbeti sami. Za morebitne kazni prejete zaradi neupoštevanja teh pravil je odgovorna stranka.',
+        required: true,
+      },
+      {
         title: 'Osebni dokument',
         description: 'Za podpis pogodbe potrebujete veljaven osebni dokument.',
         required: true,
